@@ -1,7 +1,14 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
+import os
+import sys
+
+# Add the project root to Python path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from routes import user_routes, chat_routes, conversation_routes
+from core.database import Base, engine
 
 app = FastAPI()
 
@@ -21,6 +28,10 @@ app.include_router(conversation_routes.router, prefix="/api")
 
 # Create handler for serverless
 handler = Mangum(app)
+
+@app.get("/api/health")
+async def health_check():
+    return {"status": "healthy"}
 
 # For local development
 if __name__ == "__main__":
