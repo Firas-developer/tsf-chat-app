@@ -8,14 +8,20 @@ load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-# Update the URL to use pymysql instead of mysqldb
+# Ensure PyMySQL is used
 if DATABASE_URL and DATABASE_URL.startswith('mysql://'):
     DATABASE_URL = DATABASE_URL.replace('mysql://', 'mysql+pymysql://')
 
 engine = create_engine(
     DATABASE_URL,
     pool_pre_ping=True,
-    pool_recycle=300
+    pool_recycle=300,
+    connect_args={
+        "ssl": {
+            "ssl_verify_identity": False,
+            "ssl_verify_cert": False
+        }
+    }
 )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
