@@ -76,14 +76,14 @@ async def chat(
         db.add(user_msg)
         
         # Get AI response with better error handling
-        print(f"Calling Gemini API for message: {user_message}")  # Debug log
+        print(f"Calling API response for message: {user_message}")  # Debug log
         
         try:
             ai_response = await get_openrouter_response(user_message)
-            print(f"Received Gemini response: {ai_response[:100]}...")  # Debug log
+            print(f"Received API response: {ai_response[:100]}...")  # Debug log
         except Exception as api_error:
-            print(f"Gemini API error: {str(api_error)}")  # Debug log
-            # Provide a fallback response if Gemini fails
+            print(f"API error: {str(api_error)}")  # Debug log
+            # Provide a fallback response if API fails
             ai_response = "I'm currently experiencing technical difficulties. Please try again in a few moments, or contact support if the issue persists."
         
         # Save AI response
@@ -113,3 +113,36 @@ async def chat(
     except Exception as e:
         print(f"Chat error: {str(e)}")  # Debug log
         raise HTTPException(status_code=500, detail=f"Chat service error: {str(e)}")
+
+@router.delete('/conversations/{conversation_id}')
+async def delete_conversation(
+    conversation_id: str,
+    user_id: str = Depends(verify_token),
+    db: Session = Depends(get_db)
+):
+    """
+    Delete a conversation and all associated messages
+    """
+    try:
+        current_user_id = user_id
+        # Check if conversation exists and belongs to user
+        conversation = db.query(Conversation).filter_by(
+            id=conversation_id, 
+            user_id=current_user_id
+        ).first()
+        
+        if not conversation:
+            return {"error": "Conversation not found"}, 404
+            
+        # Delete all messages first
+        db.query(Message).filter_by(conversation_id=conversation_id).delete()
+        
+        # Delete the conversation
+        db.delete(conversation)
+        db.commit()
+        
+        return {"message": "Conversation deleted successfully"}, 200
+        
+    except Exception as e:
+        db.rollback()
+        return {"error": str(e)}, 500
