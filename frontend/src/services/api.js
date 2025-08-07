@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create axios instance with base URL
 const API = axios.create({
-  baseURL: 'http://localhost:8000', // Adjust this to match your FastAPI server
+  baseURL: 'https://tsf-chat-api.vercel.app', // Adjust this to match your FastAPI server
   headers: {
     'Content-Type': 'application/json',
   },
