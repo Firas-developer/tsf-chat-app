@@ -148,7 +148,7 @@ const Sidebar = ({
                                                     </div>
                                                     <button
                                                         onClick={(e) => deleteConversation(conversation.id, e)}
-                                                        className={`p-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity ${darkMode
+                                                        className={`p-1.5 rounded-lg ${darkMode
                                                                 ? 'hover:bg-red-500/20 text-red-400 hover:text-red-300'
                                                                 : 'hover:bg-red-50 text-red-500 hover:text-red-600'
                                                             }`}
@@ -192,7 +192,7 @@ const Sidebar = ({
                                                     </div>
                                                     <button
                                                         onClick={(e) => deleteConversation(conversation.id, e)}
-                                                        className={`p-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity ${darkMode
+                                                        className={`p-1.5 rounded-lg ${darkMode
                                                                 ? 'hover:bg-red-500/20 text-red-400 hover:text-red-300'
                                                                 : 'hover:bg-red-50 text-red-500 hover:text-red-600'
                                                             }`}
@@ -236,7 +236,7 @@ const Sidebar = ({
                                                     </div>
                                                     <button
                                                         onClick={(e) => deleteConversation(conversation.id, e)}
-                                                        className={`p-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity ${darkMode
+                                                        className={`p-1.5 rounded-lg ${darkMode
                                                                 ? 'hover:bg-red-500/20 text-red-400 hover:text-red-300'
                                                                 : 'hover:bg-red-50 text-red-500 hover:text-red-600'
                                                             }`}
@@ -280,7 +280,7 @@ const Sidebar = ({
                                                     </div>
                                                     <button
                                                         onClick={(e) => deleteConversation(conversation.id, e)}
-                                                        className={`p-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity ${darkMode
+                                                        className={`p-1.5 rounded-lg ${darkMode
                                                                 ? 'hover:bg-red-500/20 text-red-400 hover:text-red-300'
                                                                 : 'hover:bg-red-50 text-red-500 hover:text-red-600'
                                                             }`}
@@ -324,7 +324,7 @@ const Sidebar = ({
                                                     </div>
                                                     <button
                                                         onClick={(e) => deleteConversation(conversation.id, e)}
-                                                        className={`p-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity ${darkMode
+                                                        className={`p-1.5 rounded-lg ${darkMode
                                                                 ? 'hover:bg-red-500/20 text-red-400 hover:text-red-300'
                                                                 : 'hover:bg-red-50 text-red-500 hover:text-red-600'
                                                             }`}
@@ -368,7 +368,7 @@ const Sidebar = ({
                                                     </div>
                                                     <button
                                                         onClick={(e) => deleteConversation(conversation.id, e)}
-                                                        className={`p-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity ${darkMode
+                                                        className={`p-1.5 rounded-lg ${darkMode
                                                                 ? 'hover:bg-red-500/20 text-red-400 hover:text-red-300'
                                                                 : 'hover:bg-red-50 text-red-500 hover:text-red-600'
                                                             }`}
@@ -412,7 +412,7 @@ const Sidebar = ({
                                                     </div>
                                                     <button
                                                         onClick={(e) => deleteConversation(conversation.id, e)}
-                                                        className={`p-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity ${darkMode
+                                                        className={`p-1.5 rounded-lg ${darkMode
                                                                 ? 'hover:bg-red-500/20 text-red-400 hover:text-red-300'
                                                                 : 'hover:bg-red-50 text-red-500 hover:text-red-600'
                                                             }`}
