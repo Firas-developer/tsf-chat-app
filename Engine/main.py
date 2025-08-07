@@ -1,28 +1,24 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from mangum import Mangum
 from routes import user_routes, chat_routes, conversation_routes
 from core.database import Base, engine
-import os
 
-app = FastAPI()
+app = FastAPI(root_path="/api")
 
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://your-frontend-url.vercel.app"],
+    allow_origins=["*"],  # Update with your frontend URL in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Create database tables
-Base.metadata.create_all(bind=engine)
-
 # Include routers
-app.include_router(user_routes.router, tags=["Users"])
-app.include_router(chat_routes.router, tags=["Chat"])
-app.include_router(conversation_routes.router, tags=["Conversations"])
+app.include_router(user_routes.router)
+app.include_router(chat_routes.router)
+app.include_router(conversation_routes.router)
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
+# Create handler for serverless
+handler = Mangum(app)
